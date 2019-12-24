@@ -59,7 +59,7 @@ def categorise(model, image_path):
 def index():
     conn = psycopg2.connect("dbname=cat_dog_checker host='localhost' user=" + db_username + " password=" + db_password)
     cur = conn.cursor()
-    cur.execute('SELECT * FROM uploads_table ORDER BY created_at DESC LIMIT 10;')
+    cur.execute('SELECT * FROM uploads_table ORDER BY created_at DESC LIMIT 6;')
     predictions = cur.fetchall()
 
     return render_template('index.html', predictions=predictions)

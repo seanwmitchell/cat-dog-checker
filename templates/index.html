@@ -40,7 +40,7 @@
       <div class="d-flex flex-wrap">
         {% for prediction in predictions %}
         <div class="col-4 p-0">
-          <div class="card mb-2" style="max-width: 210px;">
+          <div class="card mb-2" style="width: 210px;">
             <img src="{{ url_for('send_file', filename=prediction[1]) }}" class="card-img-top">
             <div class="card-body">
               <div class="card-text text-muted">Prediction <span class="font-weight-bold text-dark">{{ prediction[2] }}</span></div>
