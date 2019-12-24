@@ -18,12 +18,12 @@ def db_check():
 
     # a function to check if we have the database established already. If no, call the setup functions.
 
-    # try:
-    #     conn = psycopg2.connect("dbname=cat_dog_checker host='localhost' user=" + db_username + " password=" + db_password)
-    #     conn.close()
-    # except:
-    create_database()
-    create_table()
+    try:
+        conn = psycopg2.connect("dbname=cat_dog_checker host='localhost' user=" + db_username + " password=" + db_password)
+        conn.close()
+    except:
+        create_database()
+        create_table()
 
 def create_database():
 
