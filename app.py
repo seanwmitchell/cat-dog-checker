@@ -3,14 +3,15 @@
 import json
 import os
 from flask import Flask, render_template, request, redirect, send_from_directory
-# import numpy as np
+import numpy as np
 import tensorflow as tf
 from db_admin import db_check
 import psycopg2
 from psycopg2 import sql
 
 with open('/etc/config.json') as config_file:
-  config = json.load(config_file)
+    config = json.load(config_file)
+
 db_username = config.get('DB_USERNAME')
 db_password = config.get('DB_PASSWORD')
 
