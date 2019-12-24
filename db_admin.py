@@ -29,7 +29,7 @@ def create_database():
 
     # a function to initially establish the database
 
-    conn = psycopg2.connect("dbname=cat_dog_checker host='localhost' user=" + db_username + " password=" + db_password)
+    conn = psycopg2.connect("dbname=postgres host='localhost' user=" + db_username + " password=" + db_password)
     conn.set_isolation_level(ISOLATION_LEVEL_AUTOCOMMIT)
     cur = conn.cursor()
     cur.execute(sql.SQL("CREATE DATABASE cat_dog_checker\
