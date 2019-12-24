@@ -16,7 +16,7 @@ db_password = config.get('DB_PASSWORD')
 
 db_check()
 
-app = Flask(__name__)
+application = Flask(__name__)
 
 # Establishing the two folders
 dir_path = os.path.dirname(os.path.realpath(__file__))
@@ -55,7 +55,7 @@ def categorise(model, image_path):
     return label, classified_prob
 
 # Serving the index page
-@app.route('/')
+@application.route('/')
 def index():
     conn = psycopg2.connect("dbname=cat_dog_checker host='localhost' user=" + db_username + " password=" + db_password)
     cur = conn.cursor()
@@ -64,7 +64,7 @@ def index():
 
     return render_template('index.html', predictions=predictions)
 
-@app.route('/categorise', methods=['POST','GET'])
+@application.route('/categorise', methods=['POST','GET'])
 def upload_file():
 
     if request.method == 'GET':
@@ -83,7 +83,7 @@ def upload_file():
         return render_template('categorise.html', image_file_name = file.filename, label = label, prob = prob)
 
 
-@app.route('/feedback/<file_name>/<label>/<confidence>/<correct>/', methods=['GET'])
+@application.route('/feedback/<file_name>/<label>/<confidence>/<correct>/', methods=['GET'])
 def save_feedback(file_name, label, confidence, correct):
 
     conn = psycopg2.connect("dbname=cat_dog_checker host='localhost' user=" + db_username + " password=" + db_password)
@@ -104,11 +104,11 @@ def save_feedback(file_name, label, confidence, correct):
     return redirect("/", code = 302)
 
 
-@app.route('/categorise/<filename>')
+@application.route('/categorise/<filename>')
 def send_file(filename):
     return send_from_directory(UPLOAD_FOLDER, filename)
 
 if __name__ == '__main__':
-    app.debug = True
-    app.run(debug=True)
-    app.debug = True
+    application.debug = True
+    application.run(debug=True)
+    application.debug = True

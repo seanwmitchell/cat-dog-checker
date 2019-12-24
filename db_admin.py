@@ -10,14 +10,9 @@ with open('/etc/config.json') as config_file:
 db_username = config.get('DB_USERNAME')
 db_password = config.get('DB_PASSWORD')
 
-print(db_username)
-print(db_password)
-
-
 def db_check():
 
     # a function to check if we have the database established already. If no, call the setup functions.
-
     try:
         conn = psycopg2.connect("dbname=cat_dog_checker host='localhost' user=" + db_username + " password=" + db_password)
         conn.close()
