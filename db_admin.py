@@ -10,6 +10,9 @@ with open('/etc/config.json') as config_file:
 db_username = config.get('DB_USERNAME')
 db_password = config.get('DB_PASSWORD')
 
+print(db_username)
+print(db_password)
+
 
 def db_check():
 
