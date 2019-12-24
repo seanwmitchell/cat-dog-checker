@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Sean's cat and dog identifier - Result</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="apple-touch-icon" type="image/png?" href="/images/apple-touch-icon.png" >
+  <link rel="icon" type="image/png" href="/static/images/favicon-32x32.png" sizes="32x32" />
+  <link rel="icon" type="image/png" href="/static/images/favicon-16x16.png" sizes="16x16" />
+  <style>
+    font-family: 'Roboto', sans-serif;
+    letter-spacing: -0.04em;
+  </style>
+</head>
+<body class="bg-dark p-5">
+  <div class="d-flex justify-content-space-between">
+    <div>
+      <i class="fas fa-cat fa-10x mb-5 text-{{ 'white' if label == 'Cat' else 'secondary' }}"></i>
+      <br>
+      <i class="fas fa-dog fa-10x mb-5 text-{{ 'white' if label == 'Dog' else 'black' }}"></i>
+      <hr class="bg-secondary">
+      <h3 class="text-secondary">
+        CONFIDENCE: <span class="font-weight-bold text-white">{{prob}}%</span><small>
+      </h3>
+      <hr class="bg-secondary">
+      <h4 class="text-secondary">
+        Is this correct? <a href="/feedback/{{ image_file_name}}/{{ label }}/{{ prob }}/1" class="text-success mx-2">Yes</a><a href="/feedback/{{ image_file_name}}/{{ label }}/{{ prob }}/0" class="text-danger mx-2">No</a>
+      </h4>
+      <h4>
+        <a href="/">Try again</a></small>
+      </h4>
+    </div>
+    <div class="ml-5">
+      <img class="img-fluid" src="{{ url_for('send_file', filename=image_file_name)}}"/>
+    </div>
+  </div>
+    <script src="https://kit.fontawesome.com/0d98899145.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>
