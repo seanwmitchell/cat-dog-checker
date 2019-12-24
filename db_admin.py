@@ -22,8 +22,8 @@ def db_check():
         conn = psycopg2.connect("dbname=cat_dog_checker host='localhost' user=" + db_username + " password=" + db_password)
         conn.close()
     except:
-    create_database()
-    create_table()
+        create_database()
+        create_table()
 
 def create_database():
 
