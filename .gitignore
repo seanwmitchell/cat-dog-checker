@@ -1,3 +1,4 @@
 
 flask_app/static/catdog_classifier_Xception.h5
 *.pyc
+*.h5
