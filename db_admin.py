@@ -1,8 +1,15 @@
 # Libraries to import for database access
 
+import json
 import psycopg2
 from psycopg2 import sql
 from psycopg2.extensions import ISOLATION_LEVEL_AUTOCOMMIT
+
+with open('/etc/config.json') as config_file:
+    config = json.load(config_file)
+db_username = config.get('DB_USERNAME')
+db_password = config.get('DB_PASSWORD')
+
 
 def db_check():
 
@@ -14,8 +21,6 @@ def db_check():
     except:
         create_database()
         create_table()
-
-    print("***** DB Check done")
 
 def create_database():
 

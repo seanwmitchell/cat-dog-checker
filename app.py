@@ -11,7 +11,6 @@ from psycopg2 import sql
 
 with open('/etc/config.json') as config_file:
     config = json.load(config_file)
-
 db_username = config.get('DB_USERNAME')
 db_password = config.get('DB_PASSWORD')
 
