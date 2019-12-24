@@ -7,6 +7,7 @@ import numpy as np
 import tensorflow as tf
 from db_admin import db_check
 import psycopg2
+import json
 from psycopg2 import sql
 
 db_check()
@@ -17,10 +18,6 @@ with open('/etc/config.json') as config_file:
   config = json.load(config_file)
 db_username = config.get('DB_USERNAME')
 db_password = config.get('DB_PASSWORD')
-
-# db_username = "seanm"
-# db_password = ""
-
 
 # Establishing the two folders
 dir_path = os.path.dirname(os.path.realpath(__file__))
