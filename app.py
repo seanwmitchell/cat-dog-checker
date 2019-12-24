@@ -13,6 +13,15 @@ db_check()
 
 app = Flask(__name__)
 
+with open('/etc/config.json') as config_file:
+  config = json.load(config_file)
+db_username = config.get('DB_USERNAME')
+db_password = config.get('DB_PASSWORD')
+
+# db_username = "seanm"
+# db_password = ""
+
+
 # Establishing the two folders
 dir_path = os.path.dirname(os.path.realpath(__file__))
 UPLOAD_FOLDER = 'uploads'
@@ -52,7 +61,7 @@ def categorise(model, image_path):
 # Serving the index page
 @app.route('/')
 def index():
-    conn = psycopg2.connect("dbname=cat_dog_checker user=seanm password=")
+    conn = psycopg2.connect("dbname=cat_dog_checker user=" + db_username + " password=" + db_password)
     cur = conn.cursor()
     cur.execute('SELECT * FROM uploads_table ORDER BY created_at DESC LIMIT 10;')
     predictions = cur.fetchall()
