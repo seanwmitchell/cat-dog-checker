@@ -18,21 +18,17 @@
       <i class="fas fa-cat fa-10x mb-5 text-secondary"></i>
       <br>
       <i class="fas fa-dog fa-10x mb-5 text-secondary"></i>
-      <div>
-        <form action="/categorise" method="post" enctype="multipart/form-data">
-        </div>
+      <form action="/categorise" method="post" enctype="multipart/form-data">
         <div class="input-group">
           <div class="custom-file">
             <input type="file" class="custom-file-input" name="image" id="the-image-file">
-            <label class="custom-file-label" for="the-image-file"><span class="file-name" id="file-name">
-              Choose file
-            </span></label>
+            <label class="custom-file-label" for="the-image-file"></label>
           </div>
           <div class="input-group-append">
             <button type="submit" class="btn btn-warning" type="button">Categorise</button>
           </div>
-        </form>
-      </div>
+        </div>
+      </form>
     </div>
     <div class="pl-5">
       <h5 class="text-secondary">Recent predictions</h5>
