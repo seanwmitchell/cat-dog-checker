@@ -18,10 +18,10 @@ def db_check():
 
     # a function to check if we have the database established already. If no, call the setup functions.
 
-    # try:
-    #     conn = psycopg2.connect("dbname=cat_dog_checker user=" + db_username + " password=" + db_password)
-    #     conn.close()
-    # except:
+    try:
+        conn = psycopg2.connect("dbname=cat_dog_checker host='localhost' user=" + db_username + " password=" + db_password)
+        conn.close()
+    except:
     create_database()
     create_table()
 
@@ -29,7 +29,7 @@ def create_database():
 
     # a function to initially establish the database
 
-    conn = psycopg2.connect("dbname=cat_dog_checker user=postgres password=")
+    conn = psycopg2.connect("dbname=cat_dog_checker host='localhost' user=" + db_username + " password=" + db_password)
     conn.set_isolation_level(ISOLATION_LEVEL_AUTOCOMMIT)
     cur = conn.cursor()
     cur.execute(sql.SQL("CREATE DATABASE cat_dog_checker\
@@ -41,7 +41,7 @@ def create_table():
 
     # a function to create the table in the new db
 
-    conn = psycopg2.connect("dbname=cat_dog_checker user=postgres password=")
+    conn = psycopg2.connect("dbname=cat_dog_checker host='localhost' user=" + db_username + " password=" + db_password)
     conn.autocommit = True
     cur = conn.cursor()
     cur.execute(sql.SQL("""CREATE TABLE uploads_table(

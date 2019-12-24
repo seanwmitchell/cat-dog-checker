@@ -57,7 +57,7 @@ def categorise(model, image_path):
 # Serving the index page
 @app.route('/')
 def index():
-    conn = psycopg2.connect("dbname=cat_dog_checker user=" + db_username + " password=" + db_password)
+    conn = psycopg2.connect("dbname=cat_dog_checker host='localhost' user=" + db_username + " password=" + db_password)
     cur = conn.cursor()
     cur.execute('SELECT * FROM uploads_table ORDER BY created_at DESC LIMIT 10;')
     predictions = cur.fetchall()
@@ -86,7 +86,7 @@ def upload_file():
 @app.route('/feedback/<file_name>/<label>/<confidence>/<correct>/', methods=['GET'])
 def save_feedback(file_name, label, confidence, correct):
 
-    conn = psycopg2.connect("dbname=cat_dog_checker user=" + db_username + " password=" + db_password)
+    conn = psycopg2.connect("dbname=cat_dog_checker host='localhost' user=" + db_username + " password=" + db_password)
     cur = conn.cursor()
 
     query = f"""
