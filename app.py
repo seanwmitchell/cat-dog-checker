@@ -1,13 +1,12 @@
 # Importing the libraries
 
+import json
 import os
-from flask import Flask, render_template, request, redirect
-from flask import send_from_directory
-import numpy as np
+from flask import Flask, render_template, request, redirect, send_from_directory
+# import numpy as np
 import tensorflow as tf
 from db_admin import db_check
 import psycopg2
-import json
 from psycopg2 import sql
 
 db_check()
@@ -87,7 +86,7 @@ def upload_file():
 @app.route('/feedback/<file_name>/<label>/<confidence>/<correct>/', methods=['GET'])
 def save_feedback(file_name, label, confidence, correct):
 
-    conn = psycopg2.connect("dbname=cat_dog_checker user=seanm password=")
+    conn = psycopg2.connect("dbname=cat_dog_checker user=" + db_username + " password=" + db_password)
     cur = conn.cursor()
 
     query = f"""
