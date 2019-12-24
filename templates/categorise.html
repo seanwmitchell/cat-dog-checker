@@ -15,9 +15,13 @@
 <body class="bg-dark p-5">
   <div class="d-flex justify-content-space-between">
     <div>
-      <i class="fas fa-cat fa-10x mb-5 text-{{ 'white' if label == 'Cat' else 'secondary' }}"></i>
-      <br>
-      <i class="fas fa-dog fa-10x mb-5 text-{{ 'white' if label == 'Dog' else 'black' }}"></i>
+      {% if label == 'Cat': %}
+      <div class="ml-3 text-white font-weight-bold" style="font-size: 48px;">It's a Cat</div>
+      <i class="fas fa-cat fa-10x mb-5 text-white"></i>
+      {% else: %}
+      <div class="ml-3 text-white font-weight-bold" style="font-size: 48px;">It's a Dog</div>
+      <i class="fas fa-dog fa-10x mb-5 text-white"></i>
+      {% endif %}
       <hr class="bg-secondary">
       <h3 class="text-secondary">
         CONFIDENCE: <span class="font-weight-bold text-white">{{prob}}%</span><small>
@@ -26,9 +30,10 @@
       <h4 class="text-secondary">
         Is this correct? <a href="/feedback/{{ image_file_name}}/{{ label }}/{{ prob }}/1" class="text-success mx-2">Yes</a><a href="/feedback/{{ image_file_name}}/{{ label }}/{{ prob }}/0" class="text-danger mx-2">No</a>
       </h4>
-      <h4>
-        <a href="/">Try again</a></small>
-      </h4>
+      <br>
+      <h6>
+        <a class="mt-3" href="/">Try again</a>
+      </h6>
     </div>
     <div class="ml-5">
       <img class="img-fluid" src="{{ url_for('send_file', filename=image_file_name)}}"/>

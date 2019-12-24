@@ -39,8 +39,8 @@
       <hr class="bg-secondary">
       <div class="d-flex flex-wrap">
         {% for prediction in predictions %}
-        <div class="col-4 p-0">
-          <div class="card mb-2" style="width: 210px;">
+        <div class="col p-0">
+          <div class="card mb-3 mr-3" style="width: 250px;">
             <img src="{{ url_for('send_file', filename=prediction[1]) }}" class="card-img-top">
             <div class="card-body">
               <div class="card-text text-muted">Prediction <span class="font-weight-bold text-dark">{{ prediction[2] }}</span></div>
