@@ -57,13 +57,18 @@ def categorise(model, image_path):
 # Serving the index page
 @application.route('/')
 def index():
+    # 
     conn = psycopg2.connect("dbname=cat_dog_checker host='localhost' user=" + db_username + " password=" + db_password)
     cur = conn.cursor()
     cur.execute('SELECT * FROM uploads_table ORDER BY created_at DESC LIMIT 6;')
     predictions = cur.fetchall()
+    cur.execute('SELECT AVG(correct::int) FROM uploads_table;')
+    accuracy = round(cur.fetchall()[0][0],0)
+    conn.close()
 
-    return render_template('index.html', predictions=predictions)
+    return render_template('index.html', predictions=predictions, accuracy=accuracy)
 
+# Serving the response page
 @application.route('/categorise', methods=['POST','GET'])
 def upload_file():
 
@@ -82,7 +87,7 @@ def upload_file():
 
         return render_template('categorise.html', image_file_name = file.filename, label = label, prob = prob)
 
-
+# Post route to collect and save the correct boolean
 @application.route('/feedback/<file_name>/<label>/<confidence>/<correct>/', methods=['GET'])
 def save_feedback(file_name, label, confidence, correct):
 
@@ -103,7 +108,7 @@ def save_feedback(file_name, label, confidence, correct):
 
     return redirect("/", code = 302)
 
-
+# The image URL
 @application.route('/categorise/<filename>')
 def send_file(filename):
     return send_from_directory(UPLOAD_FOLDER, filename)
