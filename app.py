@@ -24,7 +24,7 @@ UPLOAD_FOLDER = 'uploads'
 STATIC_FOLDER = 'static'
 
 # Import the model H5 file
-cnn_model = tf.keras.models.load_model(STATIC_FOLDER + '/' + 'catdog_classifier_Xception.h5')
+cnn_model = tf.keras.models.load_model(STATIC_FOLDER + '/' + 'catdog_categorise_export.h5')
 
 IMAGE_SIZE = 224
 
