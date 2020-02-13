@@ -63,7 +63,7 @@ def index():
     cur.execute('SELECT * FROM uploads_table ORDER BY created_at DESC LIMIT 6;')
     predictions = cur.fetchall()
     cur.execute('SELECT AVG(correct::int) FROM uploads_table;')
-    accuracy = round(cur.fetchall()[0][0],0)
+    accuracy = cur.fetchall()
     conn.close()
 
     return render_template('index.html', predictions=predictions, accuracy=accuracy)
